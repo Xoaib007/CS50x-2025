@@ -1,3 +1,4 @@
+// use of And (&&) and Or (||) operator
 #include <cs50.h> 
 #include <stdio.h> 
 
