@@ -6,9 +6,10 @@ void meow(int n);
 
 int main(void) 
 { 
+  int n;
   do
   {
-    int n = get_int("Number: "); 
+    n = get_int("Number: "); 
   }
   while (n < 1)
     
