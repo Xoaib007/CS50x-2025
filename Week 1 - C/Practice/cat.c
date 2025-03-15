@@ -2,17 +2,18 @@
 #include <cs50.h> 
 #include <stdio.h> 
 
-void meow(void); 
+void meow(int n); 
 
 int main(void) 
 { 
-  for (int i = 0; i < 3; i++) 
-  { 
-    meow(); 
-  } 
+  int n = get_int("Number: "); 
+  meow(n); 
 } 
 
-void meow(void) 
+void meow(int times) 
 { 
-  printf("meow\n"); 
+  for (int i = 0; i < times; i++) 
+  { 
+    printf("meow\n"); 
+  } 
 }
