@@ -10,4 +10,11 @@ CLI commands:
 8. clear : Clears the CLI window
 9. exit : Closes the CLI window
 
-
+Data types:
+1. bool
+2. char : use single quotes (' ')
+3. double
+4. float
+5. int
+6. long
+7. string : use double quotes (" ")
