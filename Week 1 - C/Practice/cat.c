@@ -1,4 +1,4 @@
-// Use of function and loop
+// Use of function and loop (including input validation using do-while)
 #include <cs50.h> 
 #include <stdio.h> 
 
@@ -6,7 +6,12 @@ void meow(int n);
 
 int main(void) 
 { 
-  int n = get_int("Number: "); 
+  do
+  {
+    int n = get_int("Number: "); 
+  }
+  while (n < 1)
+    
   meow(n); 
 } 
 
