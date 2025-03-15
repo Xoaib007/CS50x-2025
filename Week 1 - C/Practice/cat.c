@@ -1,25 +1,29 @@
 // Use of function and loop (including input validation using do-while)
-#include <cs50.h> 
-#include <stdio.h> 
+#include <cs50.h>
+#include <stdio.h>
 
-void meow(int n); 
+void meow(int n);
 
-int main(void) 
-{ 
+int main(void)
+{
   int n;
   do
   {
-    n = get_int("Number: "); 
+    n = get_int("Number: ");
+    if (n < 1)
+    {
+        printf("Invalid input. Please write an positive number.\n");
+    }
   }
-  while (n < 1)
-    
-  meow(n); 
-} 
+  while (n < 1);
 
-void meow(int times) 
-{ 
-  for (int i = 0; i < times; i++) 
-  { 
-    printf("meow\n"); 
-  } 
+  meow(n);
+}
+
+void meow(int times)
+{
+  for (int i = 0; i < times; i++)
+  {
+    printf("meow\n");
+  }
 }
