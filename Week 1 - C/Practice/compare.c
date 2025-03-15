@@ -1,3 +1,4 @@
+// Use of if-else condition
 #include <cs50.h> 
 #include <stdio.h>
 
