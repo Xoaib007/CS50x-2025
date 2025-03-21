@@ -1,3 +1,4 @@
+// This program calculates the average of an array of scores entered by the user.
 #include <stdio.h>
 #include <cs50.h>
 
