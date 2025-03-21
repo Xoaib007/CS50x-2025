@@ -18,8 +18,8 @@
 Arguments
 `int main (int argc, string argv[])` 
 
--argc contains 
--argv[0] contains
--argv[1] contains
+- argc contains 
+- argv[0] contains
+- argv[1] contains
 
 using this, we can input the name directly while running the code.
