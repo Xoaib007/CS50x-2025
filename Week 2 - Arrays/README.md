@@ -9,3 +9,9 @@
 - compiling
 - assembling
 - linking
+
+## Debugging
+-using printf()
+-debugger50
+
+## Arrays
