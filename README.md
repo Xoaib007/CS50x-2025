@@ -3,3 +3,7 @@
 ### [Playground](https://cs50.dev/)
 ### [Course Page](https://learning.edx.org/course/course-v1:HarvardX+CS50+X/)
 ### [Submissions](https://submit.cs50.io/users/Xoaib007)
+
+
+# Weeks
+### [Week 1 - C](https://github.com/Xoaib007/CS50x-2025/Week%201%20-%20C)
