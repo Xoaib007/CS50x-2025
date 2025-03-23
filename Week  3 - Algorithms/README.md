@@ -9,7 +9,7 @@
 
 ### Linear search
 
-```
+```pseudo
 For each door from left to right
   If 50 is behind door
     Return true
@@ -21,7 +21,7 @@ Return false
 
 ### Binary search
 
-```
+```pseudo
 If no door left
   Return false
 If 50 is behind doors[middle]
