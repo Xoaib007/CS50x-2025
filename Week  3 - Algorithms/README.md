@@ -51,7 +51,13 @@ Else if 50 > doors[middle]
 
 ### Selection sort
 
-
+```pseudo
+For i from 0 to n–1
+    Find smallest number between numbers[i] and numbers[n-1]
+    Swap smallest number with numbers[i]
+```
+- O(n^2)
+- Ω(n^2)
 
 ## Data type structure
 
