@@ -1,9 +1,15 @@
 # Time complexity
 
 - Running time, O(n) where n represents the size of the problem.
-- Best case scenerio, Ω(n) uses for calculate the time complexity of best case scenerio
+- Best case scenerio (Lower bound), Ω(n) uses for calculate the time complexity of best case scenerio
 - Θ(n) uses when best case scenerio and worst case scenerio are same
-- asymptotic notation
+- Asymptotic notation is the measure of how well algorithms perform as the input gets larger and larger.
+- Some common running times we may see are:
+  - O(n ^ 2) : slowest
+  - O(n log n)
+  - O(n)
+  - O(log n)
+  - O(1) : fastes
 
 # Algorithms
 
