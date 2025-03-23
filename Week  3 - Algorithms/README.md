@@ -38,3 +38,24 @@ Else if 50 > doors[middle]
 - need to make sure the elements are sorted
 - O(log n)
 - Ω(1)
+
+## Data type structure
+
+- typedef struct allows to create new data type according to need
+- need to define the structure before the main function
+```c
+typedef struct
+{
+    string name;
+    string number;
+    string email;
+} person;
+```
+- use the name of the structure as a data type like int or string
+```c
+person people[] = {
+        {"John", "39-3486925084", "john@email.com"},
+        {"David","39-3486925085", "david@email.com" },
+        {"Muller", "39-3486925086","muller@email.com" }
+};
+```
