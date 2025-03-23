@@ -9,3 +9,4 @@
 # Notes and solutions
 ### [Week 1 - C](https://github.com/Xoaib007/CS50x-2025/tree/main/Week%201%20-%20C)
 ### [Week 2 - Arrays](https://github.com/Xoaib007/CS50x-2025/tree/main/Week%202%20-%20Arrays)
+### [Week 3 - Algorithms](https://github.com/Xoaib007/CS50x-2025/tree/main/Week%20%203%20-%20Algorithms)
