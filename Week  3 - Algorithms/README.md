@@ -19,7 +19,8 @@ Return false
 - O(n)
 - Ω(1)
 
-[Example 1](https://github.com/Xoaib007/CS50x-2025/blob/main/Week%20%203%20-%20Algorithms/Practices/01.linear.c)
+[Example 1](https://github.com/Xoaib007/CS50x-2025/blob/main/Week%20%203%20-%20Algorithms/Practices/01.linear.c) | 
+[Example 2](https://github.com/Xoaib007/CS50x-2025/blob/main/Week%20%203%20-%20Algorithms/Practices/02.linear-v2.c)
 
 ### Binary search
 
