@@ -1,11 +1,13 @@
-## Time complexity
+# Time complexity
 
 - Running time, O(n) where n represents the size of the problem.
 - Best case scenerio, Ω(n) uses for calculate the time complexity of best case scenerio
 - Θ(n) uses when best case scenerio and worst case scenerio are same
 - asymptotic notation
 
-## Algorithms
+# Algorithms
+
+## Search
 
 ### Linear search
 
@@ -38,6 +40,10 @@ Else if 50 > doors[middle]
 - need to make sure the elements are sorted
 - O(log n)
 - Ω(1)
+
+## Sorting
+
+
 
 ## Data type structure
 
