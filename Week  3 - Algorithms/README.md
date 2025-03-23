@@ -59,3 +59,4 @@ person people[] = {
         {"Muller", "39-3486925086","muller@email.com" }
 };
 ```
+[Example](https://github.com/Xoaib007/CS50x-2025/blob/main/Week%20%203%20-%20Algorithms/Practices/03.phonebook.c)
