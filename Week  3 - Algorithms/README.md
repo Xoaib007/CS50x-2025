@@ -71,7 +71,8 @@ Repeat n-1 times
         Quit
 ```
 
--
+- O(n^2)
+- Ω(n)
 
 ## Data type structure
 
