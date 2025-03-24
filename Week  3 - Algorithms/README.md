@@ -99,3 +99,4 @@ person people[] = {
 ## Recursion
 
 - Recursion is a concept in programming where a function calls itself
+[Example](https://github.com/Xoaib007/CS50x-2025/blob/main/Week%20%203%20-%20Algorithms/Practices/04.iteration.c)
