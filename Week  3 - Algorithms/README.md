@@ -74,6 +74,21 @@ Repeat n-1 times
 - O(n^2)
 - Ω(n)
 
+### Merge sort
+
+```pseudo
+If only one number
+    Quit
+Else
+    Sort left half of number
+    Sort right half of number
+    Merge sorted halves
+```
+
+- O(n log n)
+- Ω(n log n)
+- Θ(n log n)
+  
 ## Data type structure
 
 - typedef struct allows to create new data type according to need
@@ -99,4 +114,5 @@ person people[] = {
 ## Recursion
 
 - Recursion is a concept in programming where a function calls itself
+- Recursion vs Iteration
 [Example](https://github.com/Xoaib007/CS50x-2025/blob/main/Week%20%203%20-%20Algorithms/Practices/04.iteration.c)
