@@ -1,12 +1,12 @@
-# 📑 Table of Contents
+# Table of Contents
 
-1. [⏳ Time Complexity](#time-complexity)
+1. [Time Complexity](#time-complexity)
    - Big-O, Big-Omega, and Big-Theta Notation
    - Common Time Complexities
-2. [🔍 Searching Algorithms](#searching-algorithms)
+2. [Searching Algorithms](#searching-algorithms)
    - Linear Search
    - Binary Search
-3. [📊 Sorting Algorithms](#sorting-algorithms)
+3. [Sorting Algorithms](#sorting-algorithms)
    - Selection Sort
    - Bubble Sort
    - Merge Sort
