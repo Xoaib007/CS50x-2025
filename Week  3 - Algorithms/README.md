@@ -1,118 +1,167 @@
-# Time complexity
+# 📑 Table of Contents
 
-- Running time, O(n) where n represents the size of the problem.
-- Best case scenerio (Lower bound), Ω(n) uses for calculate the time complexity of best case scenerio
-- Θ(n) uses when best case scenerio and worst case scenerio are same
-- Asymptotic notation is the measure of how well algorithms perform as the input gets larger and larger.
-- Some common running times we may see are:
-  - O(n ^ 2) : slowest
-  - O(n log n)
-  - O(n)
-  - O(log n)
-  - O(1) : fastes
+1. [⏳ Time Complexity](#time-complexity)
+   - Big-O, Big-Omega, and Big-Theta Notation
+   - Common Time Complexities
+2. [🔍 Searching Algorithms](#searching-algorithms)
+   - Linear Search
+   - Binary Search
+3. [📊 Sorting Algorithms](#sorting-algorithms)
+   - Selection Sort
+   - Bubble Sort
+   - Merge Sort
+4. [Data Structures](#data-structures)
+   - Structs in C
+5. [Recursion](#recursion)
+   - What is Recursion?
+   - Example: Factorial using Recursion
+   - Recursion vs Iteration
+6. [Additional Notes](#additional-notes)
+   - Asymptotic Analysis
+   - Divide and Conquer Strategies
+   - Sorting impacts Searching
+
+
+# Time Complexity
+
+Time complexity measures the efficiency of an algorithm based on input size (n). It describes how the runtime grows as the input size increases.
+
+- **Big-O Notation (O)**: Upper bound on the running time (worst case scenario).
+- **Big-Omega Notation (Ω)**: Lower bound on the running time (best case scenario).
+- **Big-Theta Notation (Θ)**: Tight bound when best and worst case runtimes are the same.
+
+### Common Time Complexities:
+- **O(n²)** – Slowest (e.g., selection sort, bubble sort)
+- **O(n log n)** – Faster than O(n²) (e.g., merge sort, quicksort)
+- **O(n)** – Linear time (e.g., linear search)
+- **O(log n)** – Logarithmic time (e.g., binary search)
+- **O(1)** – Fastest, constant time (e.g., accessing an array index)
+
+---
 
 # Algorithms
 
-## Search
+## Searching Algorithms
 
-### Linear search
+### **Linear Search**
+A simple searching algorithm that checks each element one by one until the desired value is found.
 
 ```pseudo
-For each door from left to right
-  If 50 is behind door
-    Return true
+For each element in the list
+    If element matches the target
+        Return true
 Return false
 ```
+- **Time Complexity**: O(n) (worst case), Ω(1) (best case)
 
-- O(n)
-- Ω(1)
+[Example 1](https://github.com/Xoaib007/CS50x-2025/blob/main/Week%203%20-%20Algorithms/Practices/01.linear.c) |
+[Example 2](https://github.com/Xoaib007/CS50x-2025/blob/main/Week%203%20-%20Algorithms/Practices/02.linear-v2.c)
 
-[Example 1](https://github.com/Xoaib007/CS50x-2025/blob/main/Week%20%203%20-%20Algorithms/Practices/01.linear.c) | 
-[Example 2](https://github.com/Xoaib007/CS50x-2025/blob/main/Week%20%203%20-%20Algorithms/Practices/02.linear-v2.c)
-
-### Binary search
+### **Binary Search**
+Efficient searching algorithm that works on sorted arrays by repeatedly dividing the search range in half.
 
 ```pseudo
-If no door left
-  Return false
-If 50 is behind doors[middle]
-  Return true
-Else if 50 < doors[middle]
-  Search doors[0] through doors[middle - 1] //left half
-Else if 50 > doors[middle]
-  Search doors[middle + 1] through doors[n - 1] //right half
+If list is empty
+    Return false
+If middle element is target
+    Return true
+If target is smaller than middle element
+    Search left half
+Else
+    Search right half
 ```
+- **Time Complexity**: O(log n) (worst case), Ω(1) (best case)
+- **Requirement**: List must be sorted
 
-- need to make sure the elements are sorted
-- O(log n)
-- Ω(1)
+---
 
-## Sorting
+## Sorting Algorithms
 
-### Selection sort
+### **Selection Sort**
+Finds the smallest element and swaps it with the first unsorted position.
 
 ```pseudo
 For i from 0 to n–1
-    Find smallest number between numbers[i] and numbers[n-1]
-    Swap smallest number with numbers[i]
+    Find the smallest element in remaining array
+    Swap with element at index i
 ```
-- O(n^2)
-- Ω(n^2)
-- Θ(n^2)
+- **Time Complexity**: O(n²) (worst, best, and average case)
 
-### Bubble sort
+### **Bubble Sort**
+Repeatedly swaps adjacent elements if they are in the wrong order.
 
 ```pseudo
 Repeat n-1 times
     For i from 0 to n–2
-        If numbers[i] and numbers[i+1] out of order
+        If numbers[i] > numbers[i+1]
             Swap them
-    If no swaps
+    If no swaps in a full pass
         Quit
 ```
+- **Time Complexity**: O(n²) (worst case), Ω(n) (best case if already sorted)
 
-- O(n^2)
-- Ω(n)
-
-### Merge sort
+### **Merge Sort**
+A divide-and-conquer algorithm that recursively splits an array into halves, sorts them, and merges them back.
 
 ```pseudo
-If only one number
-    Quit
-Else
-    Sort left half of number
-    Sort right half of number
-    Merge sorted halves
+If array has only one element
+    Return
+Sort left half
+Sort right half
+Merge sorted halves
 ```
+- **Time Complexity**: O(n log n) (worst, best, and average case)
 
-- O(n log n)
-- Ω(n log n)
-- Θ(n log n)
-  
-## Data type structure
+---
 
-- typedef struct allows to create new data type according to need
-- need to define the structure before the main function
+## Data Structures
+
+### **Structs in C**
+A `struct` allows grouping multiple variables under a single data type.
+
 ```c
-typedef struct
-{
+typedef struct {
     string name;
     string number;
     string email;
 } person;
 ```
-- use the name of the structure as a data type like int or string
+**Usage:**
 ```c
 person people[] = {
-        {"John", "39-3486925084", "john@email.com"},
-        {"David","39-3486925085", "david@email.com" },
-        {"Muller", "39-3486925086","muller@email.com" }
+    {"John", "39-3486925084", "john@email.com"},
+    {"David", "39-3486925085", "david@email.com"},
+    {"Muller", "39-3486925086", "muller@email.com"}
 };
 ```
-[Example](https://github.com/Xoaib007/CS50x-2025/blob/main/Week%20%203%20-%20Algorithms/Practices/03.phonebook.c)
+[Example](https://github.com/Xoaib007/CS50x-2025/blob/main/Week%203%20-%20Algorithms/Practices/03.phonebook.c)
+
+---
 
 ## Recursion
 
-- Recursion is a concept in programming where a function calls itself
-- Recursion vs Iteration
-[Example](https://github.com/Xoaib007/CS50x-2025/blob/main/Week%20%203%20-%20Algorithms/Practices/04.iteration.c)
+### **What is Recursion?**
+Recursion is a technique where a function calls itself until a base condition is met.
+
+### **Example: Factorial using Recursion**
+```pseudo
+Function factorial(n)
+    If n == 0
+        Return 1
+    Else
+        Return n * factorial(n-1)
+```
+
+### **Recursion vs Iteration**
+- **Recursion** is often more elegant but can be inefficient due to function call overhead.
+- **Iteration** is usually more efficient in terms of memory and execution speed.
+
+[Example](https://github.com/Xoaib007/CS50x-2025/blob/main/Week%203%20-%20Algorithms/Practices/04.iteration.c)
+
+---
+
+## Additional Notes
+- **Asymptotic Analysis** helps compare algorithm efficiency independently of hardware and programming language.
+- **Divide and Conquer** strategies (like Merge Sort) break problems into smaller subproblems, solve them recursively, and combine the results efficiently.
+- **Sorting impacts Searching**: A sorted array allows more efficient searching (e.g., Binary Search vs. Linear Search).
+
