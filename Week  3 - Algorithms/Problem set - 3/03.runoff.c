@@ -1,3 +1,13 @@
+/*
+[x] vote
+[] tabulate
+[] print winner
+[] find min
+[] is tie
+[] eliminate
+*/
+
+
 #include <stdio.h>
 #include <cs50.h>
 #include <string.h>
