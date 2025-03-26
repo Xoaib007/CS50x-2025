@@ -2,8 +2,8 @@
 #include <cs50.h>
 #include <string.h>
 
-#define MAX_VOTERS 100
-#define MAX_CANDIDATES 9
+#define MAX_VOTERS 100;
+#define MAX_CANDIDATES 9;
 
 typedef struct {
     string name;
@@ -30,9 +30,9 @@ int main(int argc, string argv[])
 
     // Populate array of candidates
     candidate_count = argc - 1;
-    if (candidate_count > 9 || candidate_count < 1)
+    if (candidate_count > MAX_CANDIDATES || candidate_count < 1)
     {
-        printf("Maximum number of candidates is 9\n");
+        printf("Maximum number of candidates is %i\n", MAX_CANDIDATES);
         return 2;
     }
 
@@ -44,9 +44,9 @@ int main(int argc, string argv[])
     }
 
     voter_count = get_int("Number of voters: ");
-    if (voter_count > 100 || voter_count < 1)
+    if (voter_count > MAX_VOTERS || voter_count < 1)
     {
-        printf("Maximum number of voter is 100\n");
+        printf("Maximum number of voter is %i\n", MAX_VOTERS);
         return 2;
     }
 
@@ -57,7 +57,7 @@ int main(int argc, string argv[])
             string name = get_string("Rank %i: ", j + 1);
 
             // Check for invalid vote
-            if (!vote(name))
+            if (!vote(i, j, name))
             {
                 printf("Invalid vote.\n");
             }
@@ -67,7 +67,7 @@ int main(int argc, string argv[])
     print_winner();
 }
 
-bool vote(string name)
+bool vote(int voter, int rank, string name)
 {
     for (int i = 0; i < candidate_count; i++)
     {
