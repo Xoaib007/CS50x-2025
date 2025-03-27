@@ -224,3 +224,20 @@ void eliminate(int min)
     }
     return;
 }
+
+/*
+ * Detailed Summary:
+ * This C program simulates a runoff election where voters rank candidates in order of preference.
+ * The program starts by checking the validity of the command-line arguments and initializes the candidates.
+ * It then queries for the number of voters and their preferences, recording the valid votes.
+ * The main election loop continuously tabulates votes for non-eliminated candidates, checks for a winner,
+ * and eliminates the candidate(s) with the fewest votes if no winner is found.
+ * The election continues until a candidate wins by securing more than 50% of the votes or a tie is detected.
+ * The program uses several helper functions:
+ * - `vote`: Records a voter's preference if it is valid.
+ * - `tabulate`: Counts votes for all non-eliminated candidates based on voters' preferences.
+ * - `print_winner`: Checks and prints the winner if a candidate has more than 50% of the votes.
+ * - `find_min`: Finds the minimum number of votes any remaining candidate has.
+ * - `is_tie`: Determines if the election is tied among all non-eliminated candidates.
+ * - `eliminate`: Eliminates the candidate(s) with the minimum votes.
+ */
