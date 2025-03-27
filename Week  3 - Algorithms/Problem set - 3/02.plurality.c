@@ -104,3 +104,8 @@ void print_winner(void)
 
     return;
 }
+
+/*
+Summary:
+This C program implements a simple plurality voting system. It starts by reading candidate names from the command line and initializes an array to store candidates and their vote counts. The program then prompts the user for the number of voters and allows each voter to cast a vote by entering a candidate's name. The votes are counted and stored in the respective candidate's vote count. After all votes are cast, the program determines the candidate(s) with the highest number of votes and prints their name(s) as the winner(s). The program handles invalid votes and ensures that the number of candidates does not exceed 9.
+*/
