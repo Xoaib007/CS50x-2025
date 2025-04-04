@@ -11,3 +11,9 @@ int n = 50;
 int *p = &n;
 printf("%p\n", p); //print the memory location of variable n
 ````
+
+```c
+int n = 50;
+int *p = &n;
+printf("%i\n", *p); //print the variable n
+````
