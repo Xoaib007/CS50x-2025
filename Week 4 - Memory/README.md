@@ -19,3 +19,5 @@ int n = 50;
 int *p = &n; //declaring the pointer
 printf("%i\n", *p); //print the variable n. here * is dereferencing the p variable
 ````
+
+## String
