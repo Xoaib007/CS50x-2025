@@ -2,11 +2,11 @@
 - Hexadecimal - 0 1 2 3 4 5 6 7 8 9 a b c d e f
 
 ## Pointer
-- `*`
+- `*` :Instructs the compiler to go to a location in memory
   - Use 1: dereference
   - use 2: declaring
-- &
-- %p
+- & :Provides the address of something stored in memory
+- %p :allows us to view the address of a location in memory
 
 ```c
 int n = 50;
