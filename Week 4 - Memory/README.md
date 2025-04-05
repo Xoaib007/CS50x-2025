@@ -67,4 +67,5 @@ char *s = get_string("s: ");
 char *t = malloc(strlen(s) + 1);
 ```
 - tells computer to allocate free spaces equal to the length of s and 1 more space for "/0"
+- NULL & NUL
 
