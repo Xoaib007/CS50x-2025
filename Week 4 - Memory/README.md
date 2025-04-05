@@ -62,5 +62,9 @@ printf("%c\n", s[2]);
 - `malloc` allows to allocate a block of a specific size of memory.
 - `free` allows you to tell the compiler to free up that block of memory you previously allocated.
 
-
+```c
+char *s = get_string("s: ");
+char *t = malloc(strlen(s) + 1);
+```
+- tells computer to allocate free spaces equal to the length of s and 1 more space for "/0"
 
