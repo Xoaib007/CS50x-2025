@@ -73,3 +73,10 @@ char *t = malloc(strlen(s) + 1);
 free(t);
 ```
 - tells the computer to free up the allocated memory and use it for something else
+
+## Valgrind
+- Valgrind is a tool that can check to see if there are memory-related issues with your programs wherein you utilized malloc. Specifically, it checks to see if you free all the memory you allocated.
+
+```sh
+valgrind ./filename
+```
