@@ -22,7 +22,7 @@ printf("%i\n", *p); //print the variable n. here * is dereferencing the p variab
 
 ## String
 
-String is just a data type created by cs50 library using struct ``` typedef char *string```. String data type doesnt exist in C.
+String is just a data type created by cs50 library using struct ``` typedef char * string```. String data type doesnt exist in C.
 ```
 HI! => {'H','I','!','/0'}
 ```
@@ -32,3 +32,29 @@ string n = "HI!";
 char *n ="HI!";
 
 ```
+
+## Pointer Arithmetic
+Pointer arithmetic is the ability to do math on locations of memory.
+
+use can write 
+```c
+char *s = "HI!";
+printf("%c\n", *s);
+printf("%c\n", *(s + 1));
+printf("%c\n", *(s + 2));
+```
+or
+```c
+char *s = "HI!";
+printf("%s\n", s);
+printf("%s\n", s + 1);
+printf("%s\n", s + 2);
+```
+instead of 
+```c
+char *s = "HI!";
+printf("%c\n", s[0]);
+printf("%c\n", s[1]);
+printf("%c\n", s[2]);
+```
+
