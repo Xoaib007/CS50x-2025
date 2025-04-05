@@ -21,3 +21,14 @@ printf("%i\n", *p); //print the variable n. here * is dereferencing the p variab
 ````
 
 ## String
+
+String is just a data type created by cs50 library using struct ``` typedef char *string```. String data type doesnt exist in C.
+```
+HI! => {'H','I','!','/0'}
+```
+
+```c
+string n = "HI!";
+char *n ="HI!";
+
+```
