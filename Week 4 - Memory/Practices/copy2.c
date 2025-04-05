@@ -27,4 +27,5 @@ int main(void)
     printf("s: %s\n", s); //output: Hi!
     printf("t: %s\n", t); //output: Hi!
 
+    free(t); //free the allocated memory
 }
