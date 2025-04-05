@@ -69,3 +69,7 @@ char *t = malloc(strlen(s) + 1);
 - tells computer to allocate free spaces equal to the length of s and 1 more space for "/0"
 - NULL & NUL
 
+```c
+free(t);
+```
+- tells the computer to free up the allocated memory and use it for something else
