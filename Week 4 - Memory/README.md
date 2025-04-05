@@ -58,5 +58,9 @@ printf("%c\n", s[1]);
 printf("%c\n", s[2]);
 ```
 
-## String Comparison
+## Malloc & Free
+- `malloc` allows to allocate a block of a specific size of memory.
+- `free` allows you to tell the compiler to free up that block of memory you previously allocated.
+
+
 
