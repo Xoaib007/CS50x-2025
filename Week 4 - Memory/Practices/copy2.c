@@ -12,8 +12,10 @@ int main(void)
 
     for(int i = 0, n = strlen(t), i <= n, i++)
     {
-        t[i] = toupper(t[i]);
+        t[i] = s[i];
     }
+
+    t[0] = toupper(t[0]);
 
     printf("s: %s\n", s); //output: hi!
     printf("t: %s\n", t); //output: HI!
