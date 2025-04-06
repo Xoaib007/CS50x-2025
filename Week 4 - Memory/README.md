@@ -80,3 +80,6 @@ free(t);
 ```sh
 valgrind ./filename
 ```
+
+
+
