@@ -1,110 +1,198 @@
-### RGB
-- Hexadecimal - 0 1 2 3 4 5 6 7 8 9 a b c d e f
+# CS50 Week 4 Notes: Memory
 
-## Pointer
-- `*` :Instructs the compiler to go to a location in memory
-  - Use 1: dereference
-  - use 2: declaring
-- & :Provides the address of something stored in memory
-- %p :allows us to view the address of a location in memory
+## 📁 Contents
+- [RGB & Hexadecimal](#rgb--hexadecimal)
+- [Pointers](#pointers)
+- [Strings in C](#strings-in-c)
+- [Pointer Arithmetic](#pointer-arithmetic)
+- [Dynamic Memory: malloc & free](#dynamic-memory-malloc--free)
+- [Memory Errors & Valgrind](#memory-errors--valgrind)
+- [Buffer Overflows](#buffer-overflows)
+- [Using scanf for Input](#using-scanf-for-input)
 
+---
+
+## RGB & Hexadecimal
+- **RGB colors** in programming are often represented using hexadecimal notation.
+- Hexadecimal uses **base 16**: `0 1 2 3 4 5 6 7 8 9 A B C D E F`
+- Each color channel (Red, Green, Blue) ranges from `00` to `FF` in hex, corresponding to `0` to `255` in decimal.
+- Example: `#FF5733` means:
+  - Red: FF (255)
+  - Green: 57 (87)
+  - Blue: 33 (51)
+
+---
+
+## Pointers
+- A **pointer** is a variable that stores a memory address, usually the address of another variable.
+- Syntax:
+  - `int *p;` declares a pointer to an integer.
+  - `p = &n;` assigns the address of `n` to pointer `p`.
+- `*` : Used for two purposes:
+  - **Dereferencing**: `*p` gives the value at the address `p` points to.
+  - **Declaring**: `int *p;` declares `p` as a pointer to an int.
+- `&` : Address-of operator; `&n` gives the address of variable `n`.
+- `%p` : Format specifier to print a pointer (memory address).
+
+Example:
 ```c
 int n = 50;
 int *p = &n;
-printf("%p\n", p); //print the memory location of variable n
-````
+printf("%p\n", p); // prints the memory address of n
+```
 
+Dereferencing:
 ```c
-int n = 50;
-int *p = &n; //declaring the pointer
-printf("%i\n", *p); //print the variable n. here * is dereferencing the p variable
-````
-
-## String
-
-String is just a data type created by cs50 library using struct ``` typedef char * string```. String data type doesnt exist in C.
-```
-HI! => {'H','I','!','/0'}
+printf("%i\n", *p); // prints 50, the value of n
 ```
 
-```c
-string n = "HI!";
-char *n ="HI!";
+---
 
-```
+## Strings in C
+- In C, strings are arrays of characters terminated by a null byte `\0`.
+- The CS50 library uses a `typedef` to define `string` as:
+  ```c
+  typedef char *string;
+  ```
+- Strings are stored as contiguous characters in memory.
+- Example:
+  ```c
+  string s = "HI!"; // equivalent to char *s = "HI!";
+  // Stored in memory as: {'H','I','!','\0'}
+  ```
+- Strings are **mutable** if created with `malloc` or an array, but **immutable** if defined as a string literal.
+
+---
 
 ## Pointer Arithmetic
-Pointer arithmetic is the ability to do math on locations of memory.
+- Pointer arithmetic allows traversing through memory using pointer variables.
+- Commonly used with arrays or strings.
 
-use can write 
+Example:
 ```c
 char *s = "HI!";
-printf("%c\n", *s);
-printf("%c\n", *(s + 1));
-printf("%c\n", *(s + 2));
-```
-or
-```c
-char *s = "HI!";
-printf("%s\n", s);
-printf("%s\n", s + 1);
-printf("%s\n", s + 2);
-```
-instead of 
-```c
-char *s = "HI!";
-printf("%c\n", s[0]);
-printf("%c\n", s[1]);
-printf("%c\n", s[2]);
+printf("%c\n", *s);         // H
+printf("%c\n", *(s + 1));   // I
+printf("%c\n", *(s + 2));   // !
 ```
 
-## Malloc & Free
-- `malloc` allows to allocate a block of a specific size of memory.
-- `free` allows you to tell the compiler to free up that block of memory you previously allocated.
+Printing substrings:
+```c
+printf("%s\n", s);       // HI!
+printf("%s\n", s + 1);   // I!
+printf("%s\n", s + 2);   // !
+```
 
+Same as:
+```c
+printf("%c\n", s[0]); // H
+printf("%c\n", s[1]); // I
+printf("%c\n", s[2]); // !
+```
+
+> ⚠️ Pointer arithmetic must be done cautiously to avoid accessing invalid memory.
+
+---
+
+## Dynamic Memory: malloc & free
+- C does not automatically manage memory, so dynamic allocation is necessary for flexible data structures.
+
+### malloc
+- `malloc(size)` allocates `size` bytes in memory and returns a pointer to the beginning.
+- Use `sizeof(type)` to make allocations more robust:
+  ```c
+  int *arr = malloc(10 * sizeof(int));
+  ```
+
+### Copying Strings
 ```c
 char *s = get_string("s: ");
-char *t = malloc(strlen(s) + 1);
+char *t = malloc(strlen(s) + 1); // +1 for null terminator
+strcpy(t, s);
 ```
-- tells computer to allocate free spaces equal to the length of s and 1 more space for "/0"
-- NULL & NUL
 
-```c
-free(t);
-```
-- tells the computer to free up the allocated memory and use it for something else
+### Checking for NULL
+- Always verify `malloc` didn't fail:
+  ```c
+  if (t == NULL) {
+      return 1;
+  }
+  ```
 
-## Valgrind
-- Valgrind is a tool that can check to see if there are memory-related issues with your programs wherein you utilized malloc. Specifically, it checks to see if you free all the memory you allocated.
+### free
+- Releases previously allocated memory so it can be reused.
+  ```c
+  free(t);
+  ```
 
+> ⚠️ Never use `free()` on memory not allocated with `malloc()` or after it's already freed.
+
+---
+
+## Memory Errors & Valgrind
+- **Valgrind** is a debugging tool to catch memory issues:
+  - Memory leaks
+  - Use-after-free errors
+  - Uninitialized memory usage
+
+Command:
 ```sh
-valgrind ./filename
+valgrind ./program_name
 ```
 
-## Overflow
-- buffer overflow
-- heap overflow
-- stack overflow
+Sample output:
+```
+==12345== LEAK SUMMARY:
+==12345==    definitely lost: 10 bytes in 1 blocks
+==12345==    possibly lost: 0 bytes in 0 blocks
+```
 
-## scanf
+Fix issues by ensuring every `malloc` has a corresponding `free`.
 
-scanf is a built-in function that can get user input.
+---
 
+## Buffer Overflows
+- A **buffer overflow** occurs when a program writes more data to a block of memory (buffer) than it's allocated to hold.
+
+### Types:
+- **Stack Overflow**:
+  - Caused by infinite recursion or too-large stack allocations.
+- **Heap Overflow**:
+  - Writing past the end of memory allocated by `malloc`.
+
+### Dangers:
+- Crashes
+- Unpredictable behavior
+- Security vulnerabilities
+
+---
+
+## Using scanf for Input
 ```c
 #include <stdio.h>
 #include <stdlib.h>
 
 int main(void)
 {
-    char *s = malloc(4);
+    char *s = malloc(100); // allocate sufficient space
     if (s == NULL)
     {
         return 1;
     }
+
     printf("s: ");
-    scanf("%s", s);
+    scanf("%99s", s); // safer to limit input to 99 characters
+
     printf("s: %s\n", s);
     free(s);
     return 0;
-}```
+}
+```
+
+> ⚠️ `scanf("%s", ...)` does not prevent buffer overflow unless you limit input size or use safer functions like `fgets()`.
+
+Alternative using `fgets()`:
+```c
+fgets(s, 100, stdin);
+```
 
