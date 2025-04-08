@@ -168,6 +168,8 @@ Fix issues by ensuring every `malloc` has a corresponding `free`.
 ---
 
 ## Using scanf for Input
+
+- scanf is a built in function to get input from users.
 ```c
 #include <stdio.h>
 #include <stdlib.h>
