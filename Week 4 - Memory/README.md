@@ -192,6 +192,8 @@ int main(void)
 ```
 
 > ⚠️ `scanf("%s", ...)` does not prevent buffer overflow unless you limit input size or use safer functions like `fgets()`.
+>
+> 
 
 Alternative using `fgets()`:
 ```c
