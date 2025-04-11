@@ -1,141 +1,121 @@
-# CS50 Week 4 Notes – Memory and More
+# CS50 Week 4 Notes
 
 ## Table of Contents
-- [RGB and Hexadecimal](#rgb-and-hexadecimal)
-- [Pointers](#pointers)
-- [Strings](#strings)
-- [Pointer Arithmetic](#pointer-arithmetic)
-- [Memory Allocation: malloc & free](#memory-allocation-malloc--free)
-- [Valgrind and Memory Leaks](#valgrind-and-memory-leaks)
-- [Overflow](#overflow)
-- [scanf](#scanf)
-- [File I/O](#file-io)
-- [Extra](#extra)
+1. [RGB & Hexadecimal](#rgb--hexadecimal)
+2. [Pointers](#pointers)
+3. [Strings](#strings)
+4. [Pointer Arithmetic](#pointer-arithmetic)
+5. [Dynamic Memory Allocation (malloc & free)](#dynamic-memory-allocation-malloc--free)
+6. [Valgrind](#valgrind)
+7. [Memory Overflow](#memory-overflow)
+8. [scanf](#scanf)
+9. [File I/O](#file-io)
+10. [Extra Details](#extra-details)
 
 ---
 
-## RGB and Hexadecimal
-- RGB colors in computing are often represented using hexadecimal notation.
-- Hexadecimal is base-16 and uses digits 0–9 and letters a–f:
-  ```
-  0 1 2 3 4 5 6 7 8 9 a b c d e f
-  ```
-- Example: `#ff0000` represents red.
+## RGB & Hexadecimal
+- **Hexadecimal**: Base-16 numbering system: `0 1 2 3 4 5 6 7 8 9 a b c d e f`
+  - Commonly used in colors (e.g. `#FF0000` for red).
 
 ---
 
 ## Pointers
-- A **pointer** is a variable that stores the memory address of another variable.
+- `*` (Asterisk):
+  - **Dereferencing**: Access the value at a memory address
+  - **Declaration**: Declare a pointer variable
+- `&` (Ampersand): Gets the **address** of a variable
+- `%p`: Format specifier in `printf` to print memory addresses
 
-### Key Symbols:
-- `*` (asterisk):
-  - **Use 1 – Dereferencing**: Access the value at the pointer's address.
-  - **Use 2 – Declaration**: Declares a pointer.
-- `&` (ampersand): Retrieves the **address** of a variable.
-- `%p`: Format specifier to **print addresses**.
-
-### Example – Print address:
 ```c
 int n = 50;
-int *p = &n;
-printf("%p\n", p); // memory location of n
-```
-
-### Example – Dereferencing:
-```c
-int n = 50;
-int *p = &n;
-printf("%i\n", *p); // value of n
+int *p = &n; // p stores the address of n
+printf("%p\n", p); // prints address
+printf("%i\n", *p); // prints 50 (value at that address)
 ```
 
 ---
 
 ## Strings
-- Strings are just arrays of characters ending in a null byte (`\0`).
-- CS50 defines `string` as:
-  ```c
-  typedef char *string;
-  ```
-- Example:
-  ```c
-  string n = "HI!";
-  char *n = "HI!";  // equivalent
-  ```
-- Internally:
-  ```
-  HI! => {'H', 'I', '!', '\0'}
-  ```
+- **String** is not a native C data type. In CS50, it is defined as:
+```c
+typedef char *string;
+```
+- Strings are arrays of characters ending in a null terminator (`\0`)
+```c
+string s = "HI!";
+// Same as:
+char *s = "HI!";
+// Stored as: {'H','I','!','\0'}
+```
 
 ---
 
 ## Pointer Arithmetic
-- You can move through arrays with pointer arithmetic:
+Pointer arithmetic allows traversal through memory using pointers.
 
 ```c
 char *s = "HI!";
-printf("%c\n", *s);         // H
-printf("%c\n", *(s + 1));   // I
-printf("%c\n", *(s + 2));   // !
+printf("%c\n", *s);       // H
+printf("%c\n", *(s + 1));  // I
+printf("%c\n", *(s + 2));  // !
 ```
-
-Or print substrings:
-```c
-printf("%s\n", s);       // HI!
-printf("%s\n", s + 1);   // I!
-printf("%s\n", s + 2);   // !
-```
-
-Alternative syntax:
+Equivalent to:
 ```c
 printf("%c\n", s[0]);
 printf("%c\n", s[1]);
 printf("%c\n", s[2]);
 ```
 
+You can also print the remaining string:
+```c
+printf("%s\n", s);      // HI!
+printf("%s\n", s + 1);   // I!
+```
+
 ---
 
-## Memory Allocation: malloc & free
-- `malloc(size)`: Dynamically allocates `size` bytes of memory.
-- `free(ptr)`: Frees memory previously allocated with `malloc`.
+## Dynamic Memory Allocation (malloc & free)
+- `malloc(size)` allocates memory of a given size and returns a pointer to the first byte
+- `free(pointer)` releases the allocated memory
 
-### Example:
 ```c
 char *s = get_string("s: ");
-char *t = malloc(strlen(s) + 1); // +1 for '\0'
+char *t = malloc(strlen(s) + 1); // +1 for null terminator
+if (t != NULL)
+{
+    strcpy(t, s);
+    // Use t...
+    free(t); // Always free dynamically allocated memory
+}
 ```
-- Always check if `malloc` returns `NULL`.
-- Don't forget to free memory:
-```c
-free(t);
-```
-
-### Special terms:
-- `NUL` (with one L): The null character `\0`
-- `NULL`: A null pointer, indicating no address
+- **NULL** is returned by `malloc` if it fails
+- **NUL** (`\0`) is the null terminator character
 
 ---
 
-## Valgrind and Memory Leaks
-- **Valgrind** detects memory leaks, improper frees, and invalid reads/writes.
+## Valgrind
+A tool to check memory leaks and access errors in programs using dynamic memory.
 
-```sh
+```bash
 valgrind ./filename
 ```
 
+It shows errors like memory leaks, uninitialized memory reads, and improper `free`s.
+
 ---
 
-## Overflow
-- **Buffer Overflow**: Writing beyond array bounds in memory.
-- **Stack Overflow**: Too much function recursion.
-- **Heap Overflow**: Writing past the end of dynamically allocated memory.
-- These can lead to bugs and security vulnerabilities.
+## Memory Overflow
+Types of overflow vulnerabilities:
+- **Buffer Overflow**: Writing outside allocated memory (e.g., writing past an array)
+- **Heap Overflow**: Overflows in dynamically allocated memory
+- **Stack Overflow**: Occurs when too much memory is used on the stack (e.g., infinite recursion)
 
 ---
 
 ## scanf
-- `scanf` is a standard C function to take input.
+`scanf()` reads formatted input from the user.
 
-### Example:
 ```c
 #include <stdio.h>
 #include <stdlib.h>
@@ -148,86 +128,59 @@ int main(void)
         return 1;
     }
     printf("s: ");
-    scanf("%s", s);
+    scanf("%s", s); // risk of buffer overflow!
     printf("s: %s\n", s);
     free(s);
     return 0;
 }
 ```
-> ⚠️ **Warning**: `scanf("%s", ...)` is dangerous if buffer size is unknown or small. Prefer `fgets()` for safety.
+> ⚠️ Be careful: `scanf("%s", ...)` does **not** prevent buffer overflows. Prefer `fgets()` or validate length manually.
 
 ---
 
 ## File I/O
-- File operations in C use the `FILE` data type and related functions.
+File I/O lets you read/write files using file pointers and standard functions:
 
-### Functions:
-- `fopen(filename, mode)`: Opens a file for reading/writing.
-- `fclose(file)`: Closes a file.
-- `fprintf(file, ...)`: Prints to a file.
-- `fscanf(file, ...)`: Reads from a file.
-- `fread(ptr, size, count, file)`: Reads `count` items of `size` bytes each into `ptr` from `file`.
-- `fwrite(ptr, size, count, file)`: Writes `count` items of `size` bytes each from `ptr` to `file`.
-- `fseek(file, offset, origin)`: Moves the file pointer.
+### File Functions
+- `fopen()` - Opens a file
+- `fclose()` - Closes an open file
+- `fprintf()` - Writes formatted data to a file
+- `fscanf()` - Reads formatted data from a file
+- `fread()` - Reads binary data from a file
+- `fwrite()` - Writes binary data to a file
+- `fseek()` - Moves the file pointer to a given position
 
-### `FILE` Data Type
-- Represents an open file stream.
+### FILE Type
+- `FILE *file;` is a pointer to a file stream
 
 ---
 
-## Extra
+## Extra Details
 
-### `fread` Example:
+### fread
 ```c
 fread(buffer, 1, 4, input);
 ```
-- `buffer`: Where to store data
-- `1`: Size of each element in bytes
-- `4`: Number of elements to read
-- `input`: The file stream to read from
+- `buffer`: where to store the read data
+- `1`: size of each chunk (in bytes)
+- `4`: how many chunks
+- `input`: file pointer (source)
 
-### `fwrite` Example:
+### fwrite
 ```c
 fwrite(buffer, 1, 4, output);
 ```
-- `buffer`: Where to read data from
-- `1`: Size of each element
-- `4`: Number of elements to write
-- `output`: File stream to write to
+- `buffer`: from where to write
+- `1`: size of each chunk (in bytes)
+- `4`: how many chunks
+- `output`: file pointer (destination)
 
-### Identifying File Type by Signature (Magic Numbers)
-- Some files can be identified by the first few bytes:
-  ```c
-  // PDF Signature:
-  {0x25, 0x50, 0x44, 0x46}; // %PDF
-  ```
+### File Signature / Magic Numbers
+Used to identify file types from their first few bytes:
+- PDF: `{0x25, 0x50, 0x44, 0x46}` → `%PDF`
 
-### `uint8_t`
-- Defined in `<stdint.h>`
-- An unsigned 8-bit integer type (values from 0 to 255)
-- Commonly used when dealing with binary file data (e.g., byte buffers)
+### Fixed-width Integer Types (from `<stdint.h>`)
+- `uint8_t`: unsigned 8-bit integer (0–255)
+- `int16_t`: signed 16-bit integer (−32,768 to 32,767)
 
----
-
-## Visual Diagrams
-
-### Pointers and Memory Addresses
-```
-int n = 50;
-int *p = &n;
-
-   n      p
-+-----+ +-----+
-|  50 | | addr of n |
-+-----+ +-----+
-   ^        |
-   |________|
-```
-
-### String in Memory
-```
-string s = "HI!";
-
-Memory Representation:
-+-----+-----+-----+-----+
-| 'H' | 'I' | '!' | '
+These types are useful for precise memory management and binary file I/O.
