@@ -1,3 +1,5 @@
+// This program checks if a given file is a PDF by comparing its first four bytes with the PDF file signature (0x25, 0x50, 0x44, 0x46).
+
 #include <cs50.h>
 #include <stdint.h>
 #include <stdio.h>
