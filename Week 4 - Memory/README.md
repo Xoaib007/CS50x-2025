@@ -232,4 +232,42 @@ fclose(file);
 ```
 
 > ⚠️ Always check if `fopen` returns `NULL` to avoid working on invalid file pointers.
+>
+## File I/O
+
+fopen (Opens a file)
+fclose 
+fprintf 
+fscanf 
+fread 
+fwrite 
+fseek 
+
+- FILE data type'
+- uint8_t
+
+# Extra
+
+### fread
+```c
+    fread(buffer, 1, 4, input);
+```
+- buffer
+- 1
+- 4
+- input
+
+### fwrite
+```c
+    fwrite(buffer, 1, 4, input);
+```
+- buffer - from where
+- 1 - wjat size
+- 4 - how many
+- input - to where
+
+### how to identify files type
+- pdf {0x25, 0x50, 0x44, 0x46};
+
+
 
