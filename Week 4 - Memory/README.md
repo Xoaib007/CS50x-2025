@@ -10,7 +10,7 @@
 7. [Memory Overflow](#memory-overflow)
 8. [scanf](#scanf)
 9. [File I/O](#file-io)
-10. [Extra Details](#extra-details)
+10. [Extra](#extra)
 
 ---
 
@@ -155,7 +155,7 @@ File I/O lets you read/write files using file pointers and standard functions:
 
 ---
 
-## Extra Details
+## Extra
 
 ### fread
 ```c
