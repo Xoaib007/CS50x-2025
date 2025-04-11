@@ -209,3 +209,5 @@ fscanf
 fread 
 fwrite 
 fseek 
+
+- FILE data type
