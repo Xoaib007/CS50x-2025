@@ -200,3 +200,12 @@ Alternative using `fgets()`:
 fgets(s, 100, stdin);
 ```
 
+## File I/O
+
+fopen 
+fclose 
+fprintf 
+fscanf 
+fread 
+fwrite 
+fseek 
