@@ -9,6 +9,7 @@
 - [Memory Errors & Valgrind](#memory-errors--valgrind)
 - [Buffer Overflows](#buffer-overflows)
 - [Using scanf for Input](#using-scanf-for-input)
+- [File I/O](#file-io)
 
 ---
 
@@ -168,8 +169,6 @@ Fix issues by ensuring every `malloc` has a corresponding `free`.
 ---
 
 ## Using scanf for Input
-
-- scanf is a built in function to get input from users.
 ```c
 #include <stdio.h>
 #include <stdlib.h>
@@ -192,22 +191,45 @@ int main(void)
 ```
 
 > ⚠️ `scanf("%s", ...)` does not prevent buffer overflow unless you limit input size or use safer functions like `fgets()`.
->
-> 
 
 Alternative using `fgets()`:
 ```c
 fgets(s, 100, stdin);
 ```
 
+---
+
 ## File I/O
 
-fopen (Opens a file)
-fclose 
-fprintf 
-fscanf 
-fread 
-fwrite 
-fseek 
+C provides built-in functions for reading and writing files using the standard I/O library `stdio.h`.
 
-- FILE data type
+### Common Functions
+- `fopen(filename, mode)` : Opens a file in the given mode (`"r"`, `"w"`, `"a"`, etc.). Returns a pointer to `FILE`.
+- `fclose(file)` : Closes the opened file.
+- `fprintf(file, format, ...)` : Writes formatted text to a file.
+- `fscanf(file, format, ...)` : Reads formatted input from a file.
+- `fread(ptr, size, count, file)` : Reads `count` elements of data, each `size` bytes long.
+- `fwrite(ptr, size, count, file)` : Writes `count` elements of data to the file.
+- `fseek(file, offset, origin)` : Moves the file pointer to a specific position.
+
+### FILE Data Type
+- `FILE` is a special type in C used to represent a file stream.
+- Defined in `stdio.h`
+
+### Example
+```c
+FILE *file = fopen("data.txt", "r");
+if (file == NULL)
+{
+    return 1;
+}
+
+char buffer[100];
+fscanf(file, "%s", buffer);
+printf("Read: %s\n", buffer);
+
+fclose(file);
+```
+
+> ⚠️ Always check if `fopen` returns `NULL` to avoid working on invalid file pointers.
+
