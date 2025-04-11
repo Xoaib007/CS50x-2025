@@ -202,7 +202,7 @@ fgets(s, 100, stdin);
 
 ## File I/O
 
-fopen 
+fopen (Opens a file)
 fclose 
 fprintf 
 fscanf 
