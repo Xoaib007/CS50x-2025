@@ -60,47 +60,45 @@ void reflect(int height, int width, RGBTRIPLE image[height][width])
 // Blur image
 void blur(int height, int width, RGBTRIPLE image[height][width])
 {
-    RGBTRIPLE temp[height][width];
+    RGBTRIPLE blurredImage[height][width];
 
-    for (int i = 0; i < height; i++)
+    for (int row = 0; row < height; row++)
     {
-        for (int j = 0; j < width; j++)
+        for (int col = 0; col < width; col++)
         {
-            int red = 0, green = 0, blue = 0;
-            int count = 0;
+            int totalRed = 0, totalGreen = 0, totalBlue = 0;
+            int validPixelCount = 0;
 
-            // Loop over neighboring pixels in a 3x3 grid
-            for (int di = -1; di <= 1; di++)
+            for (int dRow = -1; dRow <= 1; dRow++)
             {
-                for (int dj = -1; dj <= 1; dj++)
+                for (int dCol = -1; dCol <= 1; dCol++)
                 {
-                    int ni = i + di;
-                    int nj = j + dj;
+                    int neighborRow = row + dRow;
+                    int neighborCol = col + dCol;
 
-                    // Check if neighbor is within bounds
-                    if (ni >= 0 && ni < height && nj >= 0 && nj < width)
+                    // Check if neighbor is within image bounds
+                    if (neighborRow >= 0 && neighborRow < height && neighborCol >= 0 && neighborCol < width)
                     {
-                        red += image[ni][nj].rgbtRed;
-                        green += image[ni][nj].rgbtGreen;
-                        blue += image[ni][nj].rgbtBlue;
-                        count++;
+                        totalRed += image[neighborRow][neighborCol].rgbtRed;
+                        totalGreen += image[neighborRow][neighborCol].rgbtGreen;
+                        totalBlue += image[neighborRow][neighborCol].rgbtBlue;
+                        validPixelCount++;
                     }
                 }
             }
 
-            // Assign averaged value to temporary image
-            temp[i][j].rgbtRed = round((float) red / count);
-            temp[i][j].rgbtGreen = round((float) green / count);
-            temp[i][j].rgbtBlue = round((float) blue / count);
+            blurredImage[row][col].rgbtRed = round((float) totalRed / validPixelCount);
+            blurredImage[row][col].rgbtGreen = round((float) totalGreen / validPixelCount);
+            blurredImage[row][col].rgbtBlue = round((float) totalBlue / validPixelCount);
         }
     }
 
-    // Copy blurred image back into the original
-    for (int i = 0; i < height; i++)
+    // Copy blurred values back to original image
+    for (int row = 0; row < height; row++)
     {
-        for (int j = 0; j < width; j++)
+        for (int col = 0; col < width; col++)
         {
-            image[i][j] = temp[i][j];
+            image[row][col] = blurredImage[row][col];
         }
     }
 }
